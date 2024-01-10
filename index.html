@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sederhana</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .calculator {
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card calculator">
+            <div class="card-body">
+                <h2 class="card-title text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600;">Kalkulator Sederhana</h2>
+                <br>
+                <div class="mb-3">
+                    <label for="num1" class="form-label" style="font-family: 'Poppins', sans-serif; font-weight: 400;">Nomor Pertama</label>
+                    <input type="number" class="form-control" style="font-family: 'Poppins', sans-serif; font-weight: 300;" id="num1" placeholder="Masukkan nomor pertama">
+                </div>
+
+                <div class="mb-3">
+                    <label for="num2" class="form-label" style="font-family: 'Poppins', sans-serif; font-weight: 400;">Nomor kedua</label>
+                    <input type="number" class="form-control" style="font-family: 'Poppins', sans-serif; font-weight: 300;" id="num2" placeholder="Masukkan nomor kedua">
+                </div>
+
+                <div class="mb-3">
+                    <label for="operator" class="form-label" style="font-family: 'Poppins', sans-serif; font-weight: 400;">Pilih Operator:</label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="operator" value="+" id="add">
+                        <label class="form-check-label" for="add">+</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="operator" value="-" id="subtract">
+                        <label class="form-check-label" for="subtract">−</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="operator" value="*" id="multiply">
+                        <label class="form-check-label" for="multiply">×</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="operator" value="/" id="divide">
+                        <label class="form-check-label" for="divide">÷</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline-success btn-block" onclick="calculateResult()">Hitung</button>
+                <br>
+                <br>
+                <div class="mb-3">
+                    <label for="result" class="form-label">Hasil</label>
+                    <input type="text" class="form-control" id="result" placeholder="Hasil" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: small;">By Laudya Aprilia Khoirum | XII Rekayasa Perangkat Lunak</p>
+        </center>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        function calculateResult() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var operatorElements = document.getElementsByName('operator');
+            var operator;
+
+            // Get selected operator
+            for (var i = 0; i < operatorElements.length; i++) {
+                if (operatorElements[i].checked) {
+                    operator = operatorElements[i].value;
+                    break;
+                }
+            }
+
+            var resultElement = document.getElementById('result');
+
+            if (isNaN(num1) || isNaN(num2)) {
+                resultElement.value = 'Masukkan nomor yang valid';
+                return;
+            }
+
+            switch (operator) {
+                case '+':
+                    resultElement.value = num1 + num2;
+                    break;
+                case '-':
+                    resultElement.value = num1 - num2;
+                    break;
+                case '*':
+                    resultElement.value = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 !== 0) {
+                        resultElement.value = num1 / num2;
+                    } else {
+                        resultElement.value = 'Pembagian dengan nol tidak diizinkan';
+                    }
+                    break;
+                default:
+                    resultElement.value = 'Operator tidak valid';
+                    break;
+            }
+        }
+    </script>
+    
+</body>
+</html>
